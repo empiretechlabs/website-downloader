@@ -37,7 +37,8 @@ archive.on('warning', function(err) {
  
 // good practice to catch this error explicitly
 archive.on('error', function(err) {
-  throw err;
+  console.error('Archive error:', err);
+  io.emit(data.token, {progress: `Error: failed to compress files - ${err.message}`});
 });
  
 // pipe archive data to the file
